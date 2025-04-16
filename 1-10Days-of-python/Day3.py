@@ -89,3 +89,31 @@ if pepperoni == "Y":
 if extra_cheese=="Y":
   bill+=1
 print(f"Your final bill is: ${bill}.")
+
+#Final Program
+print("Welcome to Treasure Island.")
+print("Your mission is to find the treasure.")
+print("Welcome to Treasure Island.")
+print("Your mission is to find the treasure.")
+
+road1 = input('You\ re at a crossroad. Where do you want to go? \nType "left" or "right": ').lower()
+
+if road1 == "left":
+    print("You've come to a lake. There is an island in the middle of the lake.")
+    road2 = input('Type "wait" to wait for a boat or "swim" to swim across: ').strip().lower()
+    if road2=="swim":
+        print("You got attacked by an angry trout. Game Over.")
+    elif road2=="wait":
+        print("You arrive at an island unharmed")
+        road3=input("There is house with 3 doors. One 'red',one 'yellow' and one 'blue'.Which color do you choose:").lower()
+        if road3=="blue":
+            print("Eaten by beasts Game Over.")
+        if road3=="yellow":
+            print("You win")
+        if road3=="red":
+            print("Burned by fire Game Over.")
+        else:
+            print("You chose a door that doesn't exist. Game Over.")
+
+else:
+    print("Fall into a hole Game Over.")
