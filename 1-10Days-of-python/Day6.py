@@ -2,7 +2,7 @@
 def greet(name):
     print(f"Hello, {name}! Welcome to Python programming.")
 
-greet("Alice")
+greet("Rohith")
 
 # Program to count from 1 to 5 using while loop
 count = 1
