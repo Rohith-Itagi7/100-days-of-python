@@ -4,7 +4,6 @@ import random
 from hangman_words import word_list
 from hangman_art import stages
 lives = 6
-
 from hangman_art import logo
 print(logo)
 chosen_word = random.choice(word_list)
