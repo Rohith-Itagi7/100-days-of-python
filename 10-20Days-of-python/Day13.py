@@ -21,3 +21,4 @@ if age > 18:
     print(f"You can drive at age {age}.")
 
 #Even we can debug our errors through using print() built i function.
+#We have to resove our code by our own and we have to assume how does the code works what error we are facing for which thngs and all.
