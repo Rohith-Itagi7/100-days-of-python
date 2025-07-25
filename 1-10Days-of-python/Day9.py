@@ -4,6 +4,10 @@ colours = {
     "pear": "green", 
     "banana": "yellow"
 }
+my_colours={
+    "Rohith":"Shine"
+    123:"Fine"
+    "Rakshu":"Bright"}
 # Grading Program
 student_scores = {
     'Harry': 88,
@@ -52,6 +56,7 @@ travel_log = {
    },
 }
 print(travel_log["Germany"]["cities_visted"][2])
+print(travel_log["France"]["cities_visted"][1])
 
 #Acution Bulider program
 
