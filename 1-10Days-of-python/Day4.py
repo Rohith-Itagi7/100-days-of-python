@@ -26,6 +26,9 @@ states_of_india.extend(["GJ"])
 
 print(states_of_india)
 #Working with nested list
+alphabet=["A","B",["C","D"]]
+print(alphabet[2][0])
+
 fruits = ["Strawberries", "Nectarines", "Apples", "Grapes", "Peaches", "Cherries", "Pears"]
 vegetables = ["Spinach", "Kale", "Tomatoes", "Celery", "Potatoes"]
 
@@ -42,7 +45,7 @@ print(dirty_dozen[1][3])
 #program
 import random
 friends = ["Alice", "Bob", "Charlie", "David", "Emanuel"]
-random_num=random.choice(friends)
+random_num=random.choice(friends)#choice function is used for random pick among items
 print(random_num)
 
 random_index=random.randint(0,4)
