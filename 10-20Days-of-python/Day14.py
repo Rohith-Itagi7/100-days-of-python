@@ -22,7 +22,7 @@ while should_continue:
     user_b=random.choice(data)
     if user_a==user_b:
        user_b=random.choice(data)
-
+    #Here I have reused th function by calling diffrent argument
     print(f"Compare A:{interface(user_a)}")
     print(vs)
     print(f"Against B:{interface(user_b)}")
@@ -36,4 +36,5 @@ while should_continue:
        print(f"You're right! Current score {score}")
     else:
         print(f"Sorry, that's wrong. Final score: {score}.")
+
         should_continue=False
