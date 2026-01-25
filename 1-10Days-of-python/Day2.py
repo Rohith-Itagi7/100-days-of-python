@@ -23,6 +23,10 @@ print(type("123"))
 print(type(123.55))
 print(type(True))
 
+#String concatination
+name="Rohith"
+age=20
+print("Hi" + name + "what is your name" + "your" + age)
 # Type converstion
 print("Number of letters in your name: " + str(len(input("Enter your name"))))
 print(int("154"))
