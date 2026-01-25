@@ -17,6 +17,9 @@ print("hello "+ input("what is your name:?") + "!")
 name="Hi How are you"
 print(name)
 
+my_variable="Hey let's meet up"
+print(my_variable)
+
 user_name="Welcome"
 length=len(user_name)
 print(length)
