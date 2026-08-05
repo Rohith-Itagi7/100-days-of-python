@@ -1,47 +1,63 @@
-# Write a program that uses print statements to print the following recipe into the Output console.
-# The text to print is already there, you just need to make it into code.
-Learnt about Interpretable and Complied difference,Python is a Dynamically typed language,Python is a Object oriented programming.
+print("Rohith Itagi")
+print("Namskara")
 
-print("1. Mix 500g of Flour, 10g Yeast and 300ml Water in a bowl.")
-print("2. Knead the dough for 10 minutes.")
-print("3. Add 3g of Salt.")
-print("4. Leave to rise for 2 hours.")
-print("5. Bake at 200 degrees C for 30 minutes.")
+#Variables
+a=10 #int
+b=20
+print(a+b)
 
-#String Manipulation
-print("Hello world!\nHello world!\nHello world!")
-print("hello"+ " "+ "Angela")
-print("hello "+ input("what is your name:?") + "!")
+Name="Rohith" #String
+print(Name)
 
-#Python Variable
-name="Hi How are you"
-print(name)
+A=22.0   #Float
+print(A)
 
-my_variable="Hey let's meet up"
-print(my_variable)
+is_strong=True  #boolean
+print(is_strong)
 
-user_name="Welcome"
-length=len(user_name)
-print(length)
+#Type checking
+a=10
+print(type(a))
 
-# We have 2 variables glass1 and glass2. glass1 contains milk and glass2 contains juice. Write 3 lines of code to switch the contents of the variables. 
-# You are only allowed to use variables to solve this exercise.
-glass2 = "milk"
-glass1 = "juice"
+#Type Converstion
+x=100
+s="22"
+f=22.0
+print(int(s)+x)
+print(int(f)+x)
 
-temp=glass1
-glass1=glass2
-glass2=temp
 
-print(glass1)
-print(glass2)
+a=10
+b=5
+user=input("Enter the operation:+.-,*,/")
+def add():
+    return a+b
+def sub():
+    return a-b
+def mul():
+    return a*b
+def div():
+    return a/b
+if user=="+":
+    print(add())
+elif user=="-":
+    print(sub())
+elif user=="*":
+    print(mul())
+else:
+    print(div())
 
-# Create a greeting for your program.
-# Ask the user for the city that they grew up in and store it in a variable.
-# Ask the user for the name of a pet and store it in a variable.
-# Combine the name of their city and pet and show them their band name.
+#Swapping two numbers
+a=10
+b=15
 
-print("Band Name Generator Project")
-user=input("What's the name of the city you grew up in?\n")
-user_pet=input("What's your pet's name?\n")
-print(f"Your band name could be {user} {user_pet}")
+a,b=b,a
+print(a)
+print(b)
+
+# Using third variable
+c=a
+a=b
+b=c
+print(a)
+print(b)
