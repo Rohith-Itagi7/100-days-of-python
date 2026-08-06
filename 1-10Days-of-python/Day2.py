@@ -1,83 +1,54 @@
-#Datatypes
+#String Manipulation
+age=int(input("What is you age:"))
+print("Hello " + "Rohith " + "your age is " + str(age) )
 
-#String
-print("Hello")
-print("123"+"455")
+name="Rohith Itagi"
+age=21
+full_details= name + " " + str(age)
+print(full_details)
 
-#bolean
-print(True)
-print(False)
+name=input("Enter the boy name: ")
+name_1=input("Enter the girl name: ")
+print(f"{name}   loves {name_1}")
 
-# float
-print(3.555)
+name="Rohith\n"* 10
+print(name)
 
-#integer
-print(455+233)
+# String methods
+Your_city="Hello world!"
+print(Your_city.strip("a"))
+print(Your_city.upper())
+print(Your_city.lower())
+print(Your_city.replace("world","Boss"))
 
-#largenumbers
-print(123_4556_789)
+#Accessing element
+print(len(Your_city))
+print(Your_city[2])
+print(Your_city[0:5])
+print(Your_city[::2])
 
-# Type Checking
-print(type(123))
-print(type("123"))
-print(type(123.55))
-print(type(True))
+#Home-work
+user_input=input("Enter your name :")
 
-#String concatination
+print(user_input.upper())
+print(user_input.lower())
+print(user_input.replace(" " , "_"))
+print(len(user_input))
+print(len((user_input).strip()))
+
+a=20
+b=30
+print(a>b and b<a)
+print(a>b or b>a)
+print(a>b and not b<a)
+age=int(input("Enter your age:"))
+if age==18:
+    print("Your adult")
+elif age>=18:
+    print("Full adult")
+else:
+    print("Your a Child")
+
 name="Rohith"
-age=20
-print("Hi" + name + "what is your name" + "your" + age)
-# Type converstion
-print("Number of letters in your name: " + str(len(input("Enter your name"))))
-print(int("154"))
-print(str(123))
-print((int(3.14)))
-
-#Mathematical Operations
-print(5-2)
-print(3*3)
-print(6/3)
-print(6//3)
-print(3**2)
-#PEMDAS
-print(3 *( 3 + 3 )/ 3 - 3)
-print(3 * 3 + 3 / 3 - 3)
-
-# BMI Calculator
-# The body mass index (BMI) is a measure used in medicine to see if someone is underweight or overweight. 
-# This is the formula used to calculate it:
-# bmi is equal to the person's weight divided by the person's height squared.
-height = 1.65 
-weight = 84
-bmi =weight/height**2
-print(bmi)
-
-#Rounding a number
-print(bmi)
-print(int())
-print(round(bmi))
-print(round(bmi,2))
-#Number Manipulation
-age=0
-
-age+=1
-age-=1
-age*=1
-#Usage of formatted  string
-score=0
-name="Virat"
-is_running=True
-
-print(f"Hey yor name is {name} and your score is {score} is always {is_running}")
-
-#Tip calculator project
-print("Welcome to the tip calculator!")
-bill = float(input("What was the total bill? $"))
-tip = int(input("What percentage tip would you like to give? 10 12 15 "))
-people = int(input("How many people to split the bill? "))
-tip_as_percent=tip/100
-total_tip_amount=bill*tip_as_percent
-total_bill=bill + total_tip_amount
-bill_per_person=total_bill/people
-final_amount=round(bill_per_person,2)
-print(final_amount)
+print("t" in name)
+print("r" not in name)
