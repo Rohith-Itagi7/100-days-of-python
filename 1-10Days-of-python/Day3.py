@@ -1,119 +1,126 @@
-#if-else statement
-height=int(input("Enter your height:"))
 
-if height >=120:
-    print("You can play any games")
-else:
-    print("Sorry! Your are too short")
+name_list=["Rohith","Itagi","Davangere","Bangalore"]
+print(name_list[1])
+print(name_list[2:6])
+print(name_list[-1])
+print(name_list)
 
-#using Modulo
-user=int(input("Enter any number"))
-if user%2==0:
-    print("Yup its even number")
-else:
-    print("Oh its odd")
+name_list[1]="Black Town"
+print(name_list)
+name_list[1:3]= ["Hey" ,"Bro"]
+print(name_list)
+name_list.append("Niranjan")
+print(name_list)
+name_list.insert(1,"Jayalakshmi")
+print(name_list.pop(1))
+print(name_list)
+name_list.remove("Bro")
+print(name_list)
 
-#Nested statements(if and elif)
-height=int(input("Enter your height:"))
+for x in range(len(name_list)):
+    print(name_list[x])
 
-if height >=120:
-    print("You can play any games")
-    age=int(input("Enter your age:"))
-    if age>=18:
-       print("You have to pay $5")
-    elif age<=12:
-        print("You are not eligible")
-    elif age<=18:
-        print("You have pay $9")
-else:
-    print("Sorry! Your are too short")
-# BMI Calculator with Interpretations
-# Add some if/elif/else statements to the BMI calculator so that it interprets the BMI values calculated.
-# If the bmi is under 18.5 (not including), print out "underweight"
-# If the bmi is between 18.5 (including) and 25 (not including), print out "normal weight"
-# If the bmi is 25 (including) or over, print out "overweight"
-weight = 85
-height = 1.85
+i=0
+while i <len(name_list):
+    i+=1
+    print(i)
 
-bmi = weight / (height ** 2)
-if bmi<18.5:
-    print("Underweight")
-elif 18.5<= bmi <25: or 18.5>bmi and 25<bmi:
-    print("normal weight")
-elif bmi>=25:
-    print("Overweight")
+#list compression
+[print(x) for x in name_list]
 
-#Multiple If
-height=int(input("Enter your height:"))
-bill=0
-if height >=120:
-    print("You can play any games")
-    age=int(input("Enter your age:"))
-    if age>=18:
-       bill=5
-       print("You have to pay $5")
-    elif age<=12:
-        bill=7
-        print("You have to pay $7")
-    elif age<=18:
-        bill=9
-        print("You have pay $9")
-    want_photos=input("If you want photo y/s?").lower()
-    if want_photos=="y":
-        bill+=3
 
-    print(f"Your total height checking cost is {bill}")
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+new_list=[x for x in fruits if 'a' in x]
+print(new_list)
 
-else:
-    print("Sorry! Your are too short")
+#Tuple
+Fruits=("Orange","Apple","Bannana","promogranet","Pappaya")
+y=list(Fruits)
+y.append("Mango")
+print(Fruits[1:3])
+print(fruits)
 
-#Pizza Order program
-print("Welcome to Python Pizza Deliveries!")
-size = input("What size pizza do you want? S, M or L: ")
-pepperoni = input("Do you want pepperoni on your pizza? Y or N: ")
-extra_cheese = input("Do you want extra cheese? Y or N: ")
-bill=0
-if size=="S":
-   bill=15
-elif size=="M":
-    bill=20
-elif size=="L":
-    bill=25
-else:
-    print("You have entered wrong input")
-if pepperoni == "Y":
-    if size=="S":
-      bill += 2
-    else:
-      bill+=3
-if extra_cheese=="Y":
-  bill+=1
-print(f"Your final bill is: ${bill}.")
+#Concatinating tuples
+tuple_1=(1,2,3,4,5,5)
+tuple_2=(6,7,5,8,9)
+new_tuple= tuple_1 +tuple_2
+print(new_tuple)
+print(new_tuple.count(5))
+print(new_tuple.index(5))
+set1={"1","2","3","4","5"}
+set2={"5","6","7","8","9"}
 
-#Final Program
-print("Welcome to Treasure Island.")
-print("Your mission is to find the treasure.")
-print("Welcome to Treasure Island.")
-print("Your mission is to find the treasure.")
+print(set1|set2)
+print(set1&set2)
+print(set1-set2)
 
-road1 = input('You\ re at a crossroad. Where do you want to go? \nType "left" or "right": ').lower()
+set1.add("4")
+print(set1)
 
-if road1 == "left":
-    print("You've come to a lake. There is an island in the middle of the lake.")
-    road2 = input('Type "wait" to wait for a boat or "swim" to swim across: ').strip().lower()
-    if road2=="swim":
-        print("You got attacked by an angry trout. Game Over.")
-    elif road2=="wait":
-        print("You arrive at an island unharmed")
-        road3=input("There is house with 3 doors. One 'red',one 'yellow' and one 'blue'.Which color do you choose:").lower()
-        if road3=="blue":
-            print("Eaten by beasts Game Over.")
-        if road3=="yellow":
-            print("You win")
-        if road3=="red":
-            print("Burned by fire Game Over.")
-        else:
-            print("You chose a door that doesn't exist. Game Over.")
+# print(set2.remove("10"))
+# print(set2.discard("10"))
+set1.pop()
+print(set1)
+set1.clear()
+print(set1)
 
-else:
-    print("Fall into a hole Game Over.")
+new_type=["1","2","3","4","5"]
+new_tuple=tuple(new_type)
+new_set=set(new_type)
+print(new_set)
+print(new_tuple)
+
+#Dictionary
+my_dict={
+    "Name":"Rohith",
+    "Age":22,
+    1:"DSa"
+}
+print(my_dict.get("Name"))
+print(my_dict["Age"])
+print(my_dict.keys())
+print(my_dict.values())
+print(len(my_dict))
+my_dict["Birthday"]="02-02-2025"
+print(my_dict)
+my_dict["Birthday"]="05-11-2025"
+print(my_dict)
+my_dict.update({"Birthday":"05-01-2024"})
+print(my_dict)
+del my_dict["Birthday"]
+print(my_dict)
+
+#loop through dictionaries
+for x in my_dict:
+    print(my_dict[x]) 
+for x in my_dict.keys():
+    print(x)
+for x in my_dict.items():
+    print(x)
+
+#Neseted Dictionary
+my_dict_1={
+    "child1":{
+        "Name":"Rohan",
+        "Age":22,
+        "year":2005
+        },
+     "child2":{
+        "Name":"Roith",
+        "Age":22,
+        "year":2002
+        },
+    "child3":{
+        "Name":"Rohi",
+        "Age":22,
+        "year":2004
+        },
+}
+print(my_dict_1["child1"]["Name"])
+for key,values in my_dict_1.items():
+    print(values['Name'])
+    
+list_1=[1,2,3,[1,4,5,6],[3,5,9]]#list inside list
+print(list_1[3][1])
+
+my_list=[1,2,3,4,(1,2,3,4),{1,2,3},{"1"}]
