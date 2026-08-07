@@ -1,85 +1,114 @@
-import random
+Time=20
+if Time==20:
+    print("It's time up")
 
-random_integer = random.randint(1, 10)
-print(random_integer)
-
-random_number_0_to_1 = random.random() * 10
-print(random_number_0_to_1)
-
-random_float = random.uniform(1, 10)
-print(random_float)
-
-random_heads_or_tails = random.randint(0, 1)
-if random_heads_or_tails == 0:
-    print("Heads")
+age=int(input("Enter the age :"))
+if age<11:
+   print("You are young")
+elif age==18:
+    print("adult")
+if age>18:
+   print("You have reached adult age")
 else:
-    print("Tails")
+   print("your still young")
+   if age>11 and age<18:
+      print("What's up still you wanna grow")
 
-# Understanding the Offset and Appending Items to Lists
+#Breakfast timing
+time=int(input("Enter the time:"))
 
-states_of_india=["Karnataka","Goa","MP","UP","HP","WB"]
-print(states_of_india[-1])
-print(states_of_india[1])
-states_of_india[0]="Delhi"
-states_of_india.append("Kerala")
-states_of_india.extend(["GJ"])
+if time==8:
+   print("Breakfast")
+elif time==1:
+   print("Lunch")
+elif time==8:
+   print("Dinner")
+else:
+   print("It's not a meal time.")
 
-print(states_of_india)
-#Working with nested list
-alphabet=["A","B",["C","D"]]
-print(alphabet[2][0])
+#Person eligible for library membership
+age=int(input("Enter the age:"))
 
-fruits = ["Strawberries", "Nectarines", "Apples", "Grapes", "Peaches", "Cherries", "Pears"]
-vegetables = ["Spinach", "Kale", "Tomatoes", "Celery", "Potatoes"]
+if age>18:
+   print("You got the student membership.")
+elif age<60:
+   print("You got a senior citizen relationship")
+else:
+   print("You got a regular membership")
 
-dirty_dozen = [fruits, vegetables]
 
-print(dirty_dozen)
+# while loop
+i=0
+while i<=5:
+   i+=1
+   print(i)
 
-print(dirty_dozen[0])
-print(dirty_dozen[1])
+i=0
+while i<=10:
+   print(f"{i}")
+   i+=1
+   if i==5:
+      break
 
-print(dirty_dozen[1][2])
-print(dirty_dozen[1][3])
+i=0
+while i<=10:
+   i+=1
+   if i==5:
+      continue
+   print(f"{ i }")
 
-#program
-import random
-friends = ["Alice", "Bob", "Charlie", "David", "Emanuel"]
-random_num=random.choice(friends)#choice function is used for random pick among items
-print(random_num)
+pin = ""
+i=0
+correct_pin = "1234"
+while pin != correct_pin and i<=3:
+    pin = input("Enter your PIN: ")
+    i+=1
+    if pin != correct_pin:
+        print("Incorrect PIN. Try again.")
+print("PIN accepted. You can proceed.")
 
-random_index=random.randint(0,4)
-print(friends[random_index])
+#Homework
+i=0
+while i<=10:
+   print(f"{i}")
+   i+=1
 
-states_of_america = ["Delaware", "Pennsylvania", "New Jersey", "Georgia", "Connecticut", "Massachusetts", "Maryland",
-                     "South Carolina", "New Hampshire", "Virginia", "New York", "North Carolina", "Rhode Island",
-                     "Vermont", "Kentucky", "Tennessee", "Ohio", "Louisiana", "Indiana", "Mississippi", "Illinois",
-                     "Alabama", "Maine", "Missouri", "Arkansas", "Michigan", "Florida", "Texas", "Iowa", "Wisconsin",
-                     "California", "Minnesota", "Oregon", "Kansas", "West Virginia", "Nevada", "Nebraska", "Colorado",
-                     "North Dakota", "South Dakota", "Montana", "Washington", "Idaho", "Wyoming", "Utah", "Oklahoma",
-                     "New Mexico", "Arizona", "Alaska", "Hawaii"]
-
-str_length=len(states_of_america)
-print(states_of_america[str_length -1])
-
-#final project
-running_on=True
-options = ("rock", "paper", "scissors")
-while running_on :
-   user_choice = None
-   computer_choice = random.choice(options)
-   if  user_choice not in options:
-    user_choice = input("What do you choose?(rock,paper,scissors):")
-   if user_choice==computer_choice:
-      print("You win")
-   elif user_choice=="rock" and computer_choice=="paper":
-      print("You win")
-   elif user_choice=="scissors" and computer_choice=="paper":
-      print("You win")
-   elif user_choice=="scissors" and computer_choice=="rock":
-      print("You win")
+i=1
+while i<=20:
+   while i%2==0:
+      i+=1
+      continue
    else:
-    print("You loose")
-    play_again=input("Do want to play again? y/n").lower()
-    if not play_again=="y":
-        running_on=False
+      print(f"{i}")
+      i+=1
+
+bus_seat=8
+
+is_always=True
+
+while is_always and bus_seat>=0:
+   book=input("Do you want to book:'Y/N'").lower()
+   if book=="y":
+      bus_seat-=1
+      print(f"{bus_seat}")
+   else:
+      print('Thankyou for visting.All seat booked')
+      break
+i=10
+while i>=1:
+   print(f"{i}")
+   i-=1
+   if i==0:
+      print("Happy new year")
+
+#for loop
+for i in range(1,11):
+   print(f"3*{i}={3*i}")
+
+text="Hello"
+vowels = "aeiouAEIOU"
+count=0
+for i in text:
+   if i in vowels:
+      count+=1
+print("Number of vowels:",count)
