@@ -1,50 +1,93 @@
-#for loops
-fruits=["Apple","Bananna","pinnaple"]
-for fruit in fruits:
-    print(fruits)
-    print(fruit + "Chikku")
-print(fruits)
+numbers = [x for x in range(1,11)]
+doubled = [num*2 for num in numbers if num%2==0]
+print(doubled)
 
-student_scores = [150, 142, 185, 120, 171, 184, 149, 24, 59, 68, 199, 78, 65, 89, 86, 55, 91, 64, 89]
-sum=0
-for score in student_scores:
-    sum+=score #here it appends score to sum in each iteration
-print(sum)
+names=["Rohith","Brother","Pacchi"]
+cl={name:len(name) for name in names}
+print(cl)
 
-student_scores = [150, 142, 185, 120, 171, 184, 149, 24, 59, 68, 199, 78, 65, 89, 86, 55, 91, 64, 89]
-max_score=0
-for score in student_scores:
-    if score>max_score:
-        max_score=score
-        print(score)
+city_population = {
+    "Bengaluru": 84,
+    "Mysuru": 11,
+    "Hubballi": 9,
+    "Mangaluru": 5
+}
+large_pop={city:value for city,value in city_population.items() if value>10}
+print(large_pop)
 
-for num in range(1,10,2):
-    print(num)
 
+
+l=["Benne Dosa","Fish","Chicken biriyani"]
+d=[x.upper() for x in l]
+print(d)
+
+dict_1={
+    "Apple": 20,
+    "Mango": 30,
+    "Bannana":40
+}
 total=0
-for i in range(1,101):
-    total+=i
+for key,values in dict_1.items():
+    total+=values
+
 print(total)
 
-#final program
-import random
-letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+list_1=[
+    {"name":"Rohith ",
+     "Age":22  ,
+     "marks":"100 "},
+     {"name" :"Manohar",
+      "Age":25,
+      "marks":"80"
+     }
+]
+for student in list_1:
+    print(student["name"] ,"-", str(student["Age"]),"-" ,student["marks"])
 
-print("Welcome to the MyPassword Generator!")
-nr_letters = int(input("How many letters would you like in your password?\n"))
-nr_symbols = int(input(f"How many symbols would you like?\n"))
-nr_numbers = int(input(f"How many numbers would you like?\n"))
-password_list=[]
-for letter in range(0,nr_letters):
-    password_list.append(random.choice(letters))
-for sym in range(0,nr_symbols):
-    password_list.append(random.choice(symbols))
 
-for nums in range(0,nr_numbers):
-    password_list.append(random.choice(numbers))
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
 
-print(password_list)
-random.shuffle(password_list)
-print(password_list,end="")
+for row in matrix:
+    print(row)
+    r=0
+    for i in row:
+        r+=i
+    print(r)
+
+#Coding challenges
+l=[9,1,2,3,5,1,7,9,1]
+print(max(l))
+l_1=l[0]
+for i in l:
+    if i<l_1:
+       l_1=i
+print(l_1)
+
+#sum of all numbers
+i=0
+for num in l:
+    i+=num
+print(i)
+
+l_2=sorted(l)
+print(l_2[-2])
+
+print(l.count(1))
+print(l[::-1])
+   
+set_1=set(l)
+l_2=list(set_1)
+
+l_2.sort()
+print(l_2[-2])
+
+rohi=[2,3,4,4,"trh","True"]
+raks=[3,5,6,2,8,"Brother","ok"]
+manu=rohi+raks
+print(manu)
+
+    
