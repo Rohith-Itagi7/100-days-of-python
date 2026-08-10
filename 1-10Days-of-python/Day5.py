@@ -85,9 +85,60 @@ l_2=list(set_1)
 l_2.sort()
 print(l_2[-2])
 
+
 rohi=[2,3,4,4,"trh","True"]
 raks=[3,5,6,2,8,"Brother","ok"]
 manu=rohi+raks
 print(manu)
 
     
+name="Bajeragoi"
+vowels="aieo"
+count=0
+for char in name:
+    if char in vowels:
+        count+=1
+print(count)
+print(name[::-1])
+
+cities="Bangalore"
+
+t_cities=cities[::-1]
+
+if t_cities==cities:
+    print("Palindrome")
+else:
+    print("It's not Palindrome")
+
+cricket="ViRat"
+count=0
+count_1=0
+for char in cricket:
+    if char.isupper():
+        count+=1
+    if char.islower():
+        count_1+=1
+
+print(count)
+print(count_1)
+
+drink="Red remender"
+result={}
+for char in drink:
+    if char in  result:
+        result[char]+=1
+    else:
+        result[char]=1
+print(result)
+
+tuple=(1,2,3,4,"True",True)
+print(list(tuple))
+fruits=["apple","bannana","Strawberry"]
+h1=tuple(fruits)
+print(h1)
+
+set_1={2,3,3,6,7,8}
+set_2={"True",True,"1",2,3,4,3,7}
+
+print(set_1|set_2)
+
