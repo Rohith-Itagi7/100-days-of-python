@@ -1,4 +1,3 @@
-#Coding challenge [list,dictionary,strings]
 numbers=[1,2,3,4,5,6]
 k=5
 k=k%(len(numbers))
@@ -7,19 +6,7 @@ print(rotated)
 print(numbers[:-4])
 print(numbers[-4:])
 
-
-numbers = [2, 4, 3, 5, 7, 8]
-target = 10
-l={}
-
-for num_1 in numbers:
-    for num in numbers:
-        final=(num_1+num)
-        if target==final:
-            l.update[final[num_1],[num]]
-print(l)
-
-
+#find pairs that equals to target
 nums = [2, 4, 3, 5, 7, 8]
 target = 10
 
@@ -31,15 +18,17 @@ for i in range(len(nums)):
             pairs.append((nums[i], nums[j]))
 
 print(pairs)
-nums = [1, 2, 4, 5]
-n=5
-total=0
-for num in nums:
-    if num not in nums:
-        nums.append(3)
-        total+=num
 
+#Findinf missing vales
+nums = [1, 2,3, 4, 5]
+n=len(nums)
+
+expected=n(n*1)//2
+actual=sum(nums)
+total=expected- actual
 print(total)
+
+#Moving all zeros
 numbers=[1,3,0,5,6,0,1,0]
 num_1=[]
 num_2=[]
@@ -66,6 +55,7 @@ while pos < len(numbers):
 
 print(numbers)
 
+#separting even and odd
 numeric=[1,2,3,4,5,6,7,8,9]
 even_list=[]
 odd_list=[]
@@ -77,6 +67,7 @@ for num in numeric:
 print("Even list",even_list)
 print("Odd list",odd_list)
 
+#Finding duplicate
 duplicate_num=[1,1,3,4,5,6,7,3,1]
 seen=set()
 duplicate=set()
@@ -88,6 +79,7 @@ for num in duplicate_num:
 
 print(duplicate)
 
+#flatten loops
 nums = [[1, 2], [3, 4], [5, 6]]
 final_list=[]
 for x in nums:
@@ -95,7 +87,7 @@ for x in nums:
         final_list.append(num)
 print(final_list)
 
-
+#frequecy count
 duplicate_num=[1,1,3,4,5,6,7,3,1]
 my_dict={}
 for num in duplicate_num:
