@@ -77,7 +77,7 @@ def factorial(n):
         return 1
     return n*factorial(n-1)
 
-result=factorial(4)
+result=factorial(5)
 print(result)
 
 #nested Def functions
@@ -90,3 +90,76 @@ def calculations(a,b):
         return a*b
     return add(), sub() ,mul()
 print(calculations(10,3))
+
+#print 1 to n
+def print_num(n):
+    if n == 1:
+        return [1]
+
+    return print_num(n - 1) + [n]
+
+print(print_num(5))
+
+#print n to 1
+def my_num(n):
+    if n==1:
+        return [1]
+    return [n]+ my_num(n-1)
+print(my_num(5))
+
+#Sum of n numbers 
+def my_sum(n):
+    if n==1:
+        return 1
+    return n + my_sum(n-1)
+
+print(my_sum(5))
+
+factorial
+def pow_num(base,exp):
+    if exp==1:
+        return base
+    return base*pow_num(base,exp-1)
+
+print(pow_num(3,4))
+
+
+def count_digits(n):
+    if n<10:
+        return 1
+    return 1+ count_digits(n//10)
+
+print(count_digits(12345))
+
+def reverse_string(n):
+    if len(n)==1:
+        return n
+
+    return reverse_string(n[1:])+n[0]
+print(reverse_string("Roy"))
+
+def palin(n):
+    if len(n)==1:
+        return 
+    return n+ palin(n[0])==n[]
+
+print(palin("madam"))
+
+lambda functions
+
+add=lambda x,y:x+y
+print(add(5,10))
+
+students = [
+    ("Roy", 90),
+    ("John", 70),
+    ("Alice", 85)
+]
+so=sorted(students,key=lambda x:x[1])
+print(so)
+
+nums = [1, 2, 3, 4]
+
+result = list(map(lambda x: x * 2, nums))
+
+print(result)
