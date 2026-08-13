@@ -1,47 +1,92 @@
-# beginner - Hangman
-import random
+#Def function -Fuction is defined using a def keyword and a function ame with parameters and arguments
+def datting(boy,girl):
+    print(f"{boy} is dating {girl}")
 
-lives = 6
-word_list=["baloon","camel","aadvark"]
-chosen_word = random.choice(word_list)
-print(chosen_word)
+datting("Rohith","Rohini")#positional arguments
 
-placeholder = ""
-word_length = len(chosen_word)
-for position in range(word_length):
-    placeholder += "_"
-print("Word to guess: " + placeholder)
+def datting(girl,boy):
+    print(f"{boy} is dating {girl}")
 
-game_over = False
-correct_letters = []
+datting(boy="Rohith",girl="Rohini")#key word arguments
 
-while not game_over:
-    print(f"**************************{lives}<???>/6 LIVES LEFT****************************")
-    guess = input("Guess a letter: ").lower()
+def datting(boy,girl="Anushka"): #defualt parameter just  taking as a default value
+    print(f"{boy} is dating {girl}")
 
-    if guess in correct_letters:
-        print(f"You have already{guess}guessed")
+datting("Rohith")
 
-    display = ""
-    for letter in chosen_word:
-        if letter == guess:
-            display += letter
-            correct_letters.append(guess)
-        elif letter in correct_letters:
-            display += letter
-        else:
-            display += "_"
+#return keyword helps to return the function value were we can use that function value wherever we want
+def my_car(a,b):
+    return a+b 
 
-    print("Word to guess: " + display)
+c=my_car(1,3)
+print(c)
 
-    if guess not in chosen_word:
-        lives -= 1
-        print(f"You guessed {guess}, that's not in the word. You lose a life.")
 
-        if lives == 0:
-            game_over = True
-            print(f"***********************YOU LOSE**********************")
+x=15 #Global Variable
+def datting(boy,girl):
+    print(f"{boy} is dating {girl}")
+    x=10 #Local Variable
+    print(x)
 
-    if "_" not in display:
-        game_over = True
-        print("****************************YOU WIN****************************")
+datting("Rohith","Rohini")
+print(x)
+
+# Coding challenges 
+def greet():
+    print("Welcome to the Pannel")
+
+greet()
+
+def greet_user(user):
+    print(f"Hello {user} Welcome to the Pannel")
+
+greet_user("Rohith")
+greet_user("Rohini")
+
+def add_numbers(a, b):
+    print(a+b)
+
+add_numbers(2,4)
+add_numbers(5,6)
+
+# Reason why we use Variable length arguments  
+def func(name,age):
+    return f"Hello {name} your age is {age}"
+
+func("Rohith") #func() missing 1 required positional argu
+
+# *args it gives output in place of tuple
+def func(*a):
+    return f"Hello {a} "
+c=func("Rohith","Rohini","Masa")
+print(c)
+
+# kwargs
+def my_fuc(**a):
+    for key,values in a.items():
+        print(f"{key} :{values}")
+my_fuc(name="Rohith",age=22, habit="Footbal")
+
+#lambda function
+dobule= lambda x:x**2
+print(dobule(2))
+
+#recursion
+def factorial(n):
+    if n==1:
+        return 1
+    return n*factorial(n-1)
+
+result=factorial(4)
+print(result)
+
+#nested Def functions
+def calculations(a,b):
+    def add():
+        return a+b
+    def sub():
+        return a-b
+    def mul():
+        return a*b
+    return add(), sub() ,mul()
+print(calculations(10,3))
