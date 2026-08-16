@@ -1,3 +1,4 @@
+#Hacker rank Challenge 1
 if __name__ == '__main__':
     n = int(input().strip())
     if n % 2 != 0:
@@ -8,3 +9,10 @@ if __name__ == '__main__':
         print("Weird")
     else:
         print("Not Weird")
+
+#Hacker rank Challenge 2
+print(a+b)
+print(a-b)
+print(a*b)
+
+
