@@ -15,8 +15,7 @@ print(a+b)
 print(a-b)
 print(a*b)
 
-
-
+#Leap year problem
 def is_leap(year):
     leap = False
     
@@ -32,6 +31,7 @@ def is_leap(year):
 year = int(input())
 print(is_leap(year))
 
+#list comprehension problem
 if __name__ == '__main__':
     x = int(input())
     y = int(input())
@@ -45,4 +45,44 @@ if __name__ == '__main__':
     #             if i+j+k!=n:
     #                 result.append([i,j,k])
     print(l)
+
+#tuple problem hacker rank
+if __name__ == '__main__':
+    n = int(input())
+    integer_list = map(int, input().split())
+    
+    t=tuple(integer_list)
+
+    print(hash(t))
+    
+#Swapcase
+def swap_case(s):
+    final=''
+    for ch in s:
+        if ch.isupper():
+            ch = ch.lower()
+            final+=ch
+        else:
+            ch = ch.upper()
+            final+=ch
+    return final
+
+if __name__ == '__main__':
+    s = input()
+    result = swap_case(s)
+    print(result)
+
+#String delimiter
+def split_and_join(line):
+    # write your code 
+    line=line.split(" ")
+    line="-".join(line)
+    return line
+
+if __name__ == '__main__':
+    line = input()
+    result = split_and_join(line)
+    print(result)
+
+
                 
