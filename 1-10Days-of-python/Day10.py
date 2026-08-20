@@ -1,88 +1,104 @@
-#Function with Outputs
-def format_name(f_name, l_name):
-    formated_f_name = f_name.title()
-    formated_l_name = l_name.title()
-    return f"{formated_f_name} {formated_l_name}"
+#Encapulation
+class bankaccount:
+    def __init__(self,balance):
+        self.__balance=balance
+    def get_balance(self):
+        print(f"This is your balance {self.__balance}")
 
-print(format_name("RohIth","ITagi"))
-#Multiple return values
-def format_name(f_name, l_name):
-    if f_name=="" or l_name=="":
-        return "you have to give valid inputs"
-    formated_f_name = f_name.title()
-    formated_l_name = l_name.title()
-    return f"{formated_f_name} {formated_l_name}"
+a=bankaccount(1000)
+a.get_balance()
+           
+class student:
+    def __init__(self,name,age):
+        self.__name=name
+        self.__age=age
+    def get_name(self):
+        print(f"Name: {self.__name}")
+    def get_age(self):
+        print(f"Age: {self.__age}")
 
-formatted_name = format_name(input("What is your frist name"),input("What is your last name"))
+person1=student("Rohith",22)
+print(person1.__name)
+person1.get_name()
+person1.get_age()
 
-print(formatted_name)
+class BankAccount:
+    def __init__(self,balance):
+        self.__balance=balance
 
-""" Write a program that returns True or False whether if a given year is a leap year.A normal year has 365 days, leap years have 366, with aWn extra day in February. This is how you work out whether if a particular year is a leap year. on every year that is divisible by 4 with no remainder
- except every year that is evenly divisible by 100 with no remainder  unless the year is also divisible by 400 with no remainder"""
-  
-def is_leap_year(year):
-    if year % 4 == 0:
-        if year % 100 == 0:
-            if year % 400 == 0:
-                return True
-            else:
-                return False
-        else:
-            return True
-    else:
-        return False
-    
-#Doc String
-def my_function(num):
-    """Multiplies a number by itself."""
-    return num * num
-#Calculator program using def function
-def add(n1, n2):
-    return n1 + n2
+    def deposite(self,amount):
+        if amount>0 :
+            self.__balance+=amount
 
+    def  withdraw(self,amount):
+        if amount<=self.__balance:
+            self.__balance-=amount
 
-def subtract(n1, n2):
-    return n1 - n2
+    def display_balance(self):
+        print(f"Your balance is {self.__balance}")
 
+a=BankAccount(1000)
+a.deposite(500)
+a.withdraw(300)
+a.display_balance()
 
-def multiply(n1, n2):
-    return n1 * n2
+#Abstraction
+from abc import ABC,abstractmethod
 
+class animal(ABC):
+    @abstractmethod
+    def sound(self):
+        pass
 
-def divide(n1, n2):
-    return n1 / n2
+class Dog(animal):
+    def sound(self):
+        print("Dog barks")
 
+d=Dog()
+d.sound()
 
-operations = {
-    "+": add,
-    "-": subtract,
-    "*": multiply,
-    "/": divide,
-}
+from abc import ABC,abstractclass
 
-# print(operations["*"](4, 8))
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
 
+class circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
 
-def calculator():
-    should_accumulate = True
-    num1 = float(input("What is the first number?: "))
+    def area(self):
+        print(3.14 * self.radius * self.radius)
 
-    while should_accumulate:
-        for symbol in operations:
-            print(symbol)
-        operation_symbol = input("Pick an operation: ")
-        num2 = float(input("What is the next number?: "))
-        answer = operations[operation_symbol](num1, num2)
-        print(f"{num1} {operation_symbol} {num2} = {answer}")
+class rectangle(Shape):
+    def __init__(self,length,width):
+        self.length = length
+        self.width = width
+    def area(self):
+        print(self.length * self.width)
 
-        choice = input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation: ")
-
-        if choice == "y":
-            num1 = answer
-        else:
-            should_accumulate = False
-            print("\n" * 20)
-            calculator()
+ci=circle(5)
+rec=rectangle(5,10)
+ci.area()
+rec.area()
 
 
-calculator()#calling a function
+from abc import ABC, abstractmethod
+
+class Vehical(ABC):
+    @abstractmethod
+    def start(self):
+        pass
+class car(Vehical):
+    def start(self):
+        print("Car starts with a key")
+class bike(Vehical):
+    def start(self):
+        print("Bike start with a self-start")
+
+a=car()
+b=bike()
+
+a.start()
+b.start()
