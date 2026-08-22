@@ -1,77 +1,109 @@
-import random
+class Student:
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age  # Private attribute
 
+    # Getter for age
+    def get_age(self):
+        return self.__age
 
-def deal_card():
-    """Returns a random card from the deck"""
-    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-    card = random.choice(cards)
-    return card
-
-
-def calculate_score(cards):
-    """Take a list of cards and return the score calculated from the cards"""
-    if sum(cards) == 21 and len(cards) == 2:
-        return 0
-
-    if 11 in cards and sum(cards) > 21:
-        cards.remove(11)
-        cards.append(1)
-
-    return sum(cards)
-
-
-def compare(u_score, c_score):
-    """Compares the user score u_score against the computer score c_score."""
-    if u_score == c_score:
-        return "Draw 🙃"
-    elif c_score == 0:
-        return "Lose, opponent has Blackjack 😱"
-    elif u_score == 0:
-        return "Win with a Blackjack 😎"
-    elif u_score > 21:
-        return "You went over. You lose 😭"
-    elif c_score > 21:
-        return "Opponent went over. You win 😁"
-    elif u_score > c_score:
-        return "You win 😃"
-    else:
-        return "You lose 😤"
-
-def play_game():
-    user_cards = []
-    computer_cards = []
-    computer_score = -1
-    user_score = -1
-    is_game_over = False
-
-    for _ in range(2):
-        user_cards.append(deal_card())
-        computer_cards.append(deal_card())
-
-    while not is_game_over:
-        user_score = calculate_score(user_cards)
-        computer_score = calculate_score(computer_cards)
-        print(f"Your cards: {user_cards}, current score: {user_score}")
-        print(f"Computer's first card: {computer_cards[0]}")
-
-        if user_score == 0 or computer_score == 0 or user_score > 21:
-            is_game_over = True
+    # Setter for age
+    def set_age(self, age):
+        if age > 0:  # Validation
+            self.__age = age
         else:
-            user_should_deal = input("Type 'y' to get another card, type 'n' to pass: ")
-            if user_should_deal == "y":
-                user_cards.append(deal_card())
-            else:
-                is_game_over = True
+            print("Invalid age")
 
-    while computer_score != 0 and computer_score < 17:
-        computer_cards.append(deal_card())
-        computer_score = calculate_score(computer_cards)
+# Usage
+student = Student("Anita", 20)
+print("Age:", student.get_age())  # Accessing age with getter
+student.set_age(21)  # Modifying age with setter
+print("Updated Age:", student.get_age())
 
-    print(f"Your final hand: {user_cards}, final score: {user_score}")
-    print(f"Computer's final hand: {computer_cards}, final score: {computer_score}")
-    print(compare(user_score, computer_score))
+class BankAccount:
+    def __init__(self,balance):
+        self.__balance=balance
+
+    def get_balance(self):
+        return self.__balance
+
+    def set_balance(self,balance):
+        if balance>0:
+           self.__balance=balance
+user_1=BankAccount(2000)
+print("Balance:" ,user_1.get_balance())
+user_1.set_balance(1500)
+print("Updated balance:" ,user_1.get_balance())
+
+#MethodOverloading
+class Calculator:
+    def __init__(self, a, b, c=None):
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def multiply(self):
+        if self.c is None:
+            print(self.a * self.b)
+        else:
+            print(self.a * self.b * self.c)
 
 
-while input("Do you want to play a game of Blackjack? Type 'y' or 'n': ") == "y":
-    print("\n" * 20)
-    play_game()
+mul = Calculator(5, 6, 7)
+mul.multiply()
+
+mul = Calculator(5, 10)
+mul.multiply()
+
+class Calculator:
+    def multiply(self, *numbers):
+        result = 1
+
+        for num in numbers:
+            result *= num
+
+        return result
+
+
+calc = Calculator()
+
+print(calc.multiply(5, 6))
+print(calc.multiply(5, 6, 7))
+
+#Overriding
+class Vehicle:
+
+    def start(self):
+        print("Vehicle started")
+
+class Car(Vehicle):
+
+    def start(self):
+        print("Car starts with key")
+
+class Bike(Vehicle):
+
+    def start(self):
+        print("Bike → Bike starts with button")
+
+car = Car()
+bike = Bike()
+
+car.start()
+bike.start()
+
+from abc import ABC,abstractmethod
+class Empolyee(ABC):
+    @abstractmethod
+    def calculate_salary(self):
+        pass
+class Manager(Empolyee):
+    def __init__(self, hours, rate):
+        self.hours = hours
+        self.rate = rate
+
+    def calculate_salary(self):
+        return self.hours * self.rate
+manager = Manager(40, 500)
+
+print(manager.calculate_salary())
