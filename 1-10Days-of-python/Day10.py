@@ -1,120 +1,272 @@
-#Encapulation
-class bankaccount:
-    def __init__(self,balance):
-        self.__balance=balance
-    def get_balance(self):
-        print(f"This is your balance {self.__balance}")
+#Inheritance
+class Vehicle:
 
-a=bankaccount(1000)
-a.get_balance()
-           
-class student:
+    def start(self):
+        print("Vehicle started")
+
+    def stop(self):
+        print("Vehicle stopped")
+
+class Car(Vehicle):
+
+    def drive(self):
+        print("Car is driving")
+
+class Bike(Vehicle):
+
+    def ride(self):
+        print("Bike is riding")
+
+car = Car()
+bike = Bike()
+
+car.start()
+car.stop()
+car.drive()
+
+
+class Animal:
+    def eat(self):
+        print("Animal is eating")
+
+class Dog(Animal):
+    pass
+
+dog=Dog()
+dog.eat()
+
+#2
+class person:
     def __init__(self,name,age):
-        self.__name=name
-        self.__age=age
-    def get_name(self):
-        print(f"Name: {self.__name}")
-    def get_age(self):
-        print(f"Age: {self.__age}")
+        self.name=name
+        self.age=age
 
-person1=student("Rohith",22)
-print(person1.__name)
-person1.get_name()
-person1.get_age()
+class Student(person):
+    def __init__(self,name,age,course):
+        super().__init__(name,age)
+        self.course=course
 
-class BankAccount:
-    def __init__(self,balance):
-        self.__balance=balance
+    def display(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Course: {self.course}")
+s=Student("Rohith",20,"AIML")
+s.display()
 
-    def deposite(self,amount):
-        if amount>0 :
-            self.__balance+=amount
-
-    def  withdraw(self,amount):
-        if amount<=self.__balance:
-            self.__balance-=amount
-
-    def display_balance(self):
-        print(f"Your balance is {self.__balance}")
-
-a=BankAccount(1000)
-a.deposite(500)
-a.withdraw(300)
-a.display_balance()
-
-#Abstraction
-from abc import ABC,abstractmethod
-
-class animal(ABC):
-    @abstractmethod
+#3
+class Animal:
     def sound(self):
-        pass
+        print("Animal makes a sound")
 
-class Dog(animal):
+class dog(Animal):
     def sound(self):
-        print("Dog barks")
+        print("Dog is braking")
 
-d=Dog()
-d.sound()
+Dog=dog()
+Dog.sound()
 
-from abc import ABC,abstractclass
+#4
+class Employee:
+    def __init__(self,name,salary):
+        self.name=name
+        self.salary=salary
 
-class Shape(ABC):
-    @abstractmethod
-    def area(self):
-        pass
+    def display(self):
+        print(f"Name: {self.name}")
+        print(f"Salary: {self.salary}")
 
-class circle(Shape):
+class Manager(Employee):
+    def __init__(self,name,salary,team_size):
+        super().__init__(name,salary)
+        self.team_size=team_size
+
+    def manage(self):
+        print(f"Managing a team of {self.team_size} people")
+
+class Developer(Employee):
+    def __init__(self, name, salary, programming_language):
+        super().__init__(name, salary)
+        self.programming_language = programming_language
+
+    def code(self):
+        print(f"Coding in {self.programming_language}")
+
+manager = Manager("Roy", 80000, 10)
+developer = Developer("Rahul", 60000, "Python")
+
+manager.display()
+manager.manage()
+
+developer.display()
+developer.code()
+
+#Polymorphism
+class Animal:
+    def sound(self):
+        print("OH it's making sound")
+
+class dog(Animal):
+    def sound(self):
+        print("dog is barking")
+
+class cat(Animal):
+    def sound(self):
+        print("Meow")
+
+a=dog()
+b=cat()
+a.sound()
+b.sound()
+
+class Vehicle:
+
+    def start(self):
+        print("Vehicle started")
+
+class Car(Vehicle):
+
+    def start(self):
+        print("Car starts with key")
+
+class Bike(Vehicle):
+
+    def start(self):
+        print("Bike → Bike starts with button")
+
+car = Car()
+bike = Bike()
+
+car.start()
+bike.start()
+
+class dog:
+    def sound(self):
+        print("Bow")
+class cat:
+    def sound(self):
+        print("Meow")
+class cow:
+    def sound(self):
+        print("Boo")
+
+def make_sound(animal):
+    animal.sound()
+
+a=dog()
+b=cat()
+c=cow()
+make_sound(a)
+make_sound(b)
+make_sound(c)
+
+class UPI:
+    def pay(self):
+        print("Payed through UPI.")
+
+class Creaditcard:
+    def pay(self):
+        print("Payed through Creaditcard")
+
+class Cash:
+    def pay(self):
+        print("Payed through cash")
+
+def procces_payment(payment):
+    payment.pay()
+
+a=UPI()
+b=Creaditcard()
+c=Cash()
+
+procces_payment(a)
+procces_payment(b)
+procces_payment(c)
+
+class Circle:
     def __init__(self, radius):
         self.radius = radius
 
     def area(self):
         print(3.14 * self.radius * self.radius)
 
-class rectangle(Shape):
-    def __init__(self,length,width):
+
+class Rectangle:
+    def __init__(self, length, width):
         self.length = length
         self.width = width
+
     def area(self):
-        print(self.length * self.width)
-
-ci=circle(5)
-rec=rectangle(5,10)
-ci.area()
-rec.area()
+        print(f"Area of rectangle: {self.length * self.width}")
 
 
-from abc import ABC, abstractmethod
+class Square:
+    def __init__(self, side):
+        self.side = side
 
-class Vehical(ABC):
-    @abstractmethod
+    def area(self):
+        print(f"Area of square: {self.side * self.side}")
+
+
+def calculate_area(shape):
+    shape.area()
+
+
+a = Circle(5)
+b = Rectangle(10, 20)
+c = Square(4)
+
+calculate_area(a)
+calculate_area(b)
+calculate_area(c)
+
+# Final last 5 coding questions
+class BankAccount:
+    def __init__(self,account_number,balance):
+        self.__account_number=account_number
+        self.__balance=balance
+
+    def deposite(self,amount):
+        self.__balance+=amount
+        print(f"Your bank balance is {self.__balance} ")
+
+    def withdraw(self,amount):
+        if self.__balance> amount:
+            self.__balance-=amount
+            print(f"You withdraw {amount} and your balance is {self.__balance}")
+
+
+a=BankAccount(12345,1000)
+a.deposite(100)
+a.withdraw(200)
+
+#abstraction
+class Phone :
+    def __init__(self,contact,picture):
+        self.contact=contact
+        self.picture=picture
+    def call_contact(self):
+        print(f"There are {self.contact} contacts in your phone")
+
+    def take_picture(self):
+        print(f"There are {self.picture} pictures in your phone")
+
+a=Phone(500,1000)
+a.call_contact()
+a.take_picture()
+
+#Inheritance
+class Vehical:
     def start(self):
-        pass
+        print("Vehical started")
+
 class car(Vehical):
-    def start(self):
-        print("Car starts with a key")
+    def stop(self):
+        print("Car is stopped")
+
 class bike(Vehical):
-    def start(self):
-        print("Bike start with a self-start")
+    def stop(self):
+        print("Bike is stopped")
 
-a=car()
-b=bike()
-
+a=bike()
+b=car()
 a.start()
-b.start()
-
-
-class User:
-    def __init__(self, username):
-        self.username = username
-
-    def login(self):
-        print(f"{self.username} logged in")
-
-class Admin(User):
-    def delete_user(self, user):
-        print(f"Admin {self.username} deleted user {user}")
-
-admin = Admin("karnataka_admin")
-admin.login()  # Inherited from User
-admin.delete_user("user_102")  # Admin-specific method
