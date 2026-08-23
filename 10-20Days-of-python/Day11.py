@@ -107,3 +107,122 @@ class Manager(Empolyee):
 manager = Manager(40, 500)
 
 print(manager.calculate_salary())
+
+#   Simple Calculator
+print("Simple Calculator")
+print("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Exit")
+
+def add(a,b):
+    return a+b
+user_input=int(input("Enter your choice (1-5):"))
+
+if user_input in {1,2,3}:
+    a=float(input("Enter the frist number:"))
+    b=float(input("Enter the second number:"))
+if user_input==1:
+    print(f"Result: {a} + {b} ={add(a,b)}")
+elif user_input==2:
+    a=float(input("Enter the frist number:"))
+    b=float(input("Enter the second number:"))
+    c=a-b
+    print(f"{a} - {b} ={c}")
+elif user_input==3:
+    a=input("Enter the frist number:")
+    b=input("Enter the second number:")
+    c=a*b
+    print(f"{a} * {b} ={c}")
+elif user_input==4:
+    a=input("Enter the frist number:")
+    b=input("Enter the second number:")
+    c=a/b
+    print(f"{a} / {b} ={c}")
+
+if user_input==5:
+    print("Exiting the calculator.Goodbye!")
+
+
+class Grocerystore:
+    def __init__(self):
+        self.cart={}
+
+    def add_item(self,item,price):
+        self.cart[item]=price
+
+    def remove_item(self,item):
+        if item in self.cart:
+            del self.cart[item]
+        else:
+            return "No such item found"
+    def total_price(self):
+        total=sum(self.cart.values())
+        print(f"The total price {total}")
+
+    def display(self):
+        print("\n--- Grocery Store ---")
+        print("1. Add item")
+        print("2. Remove item")
+        print("3. View total price")
+        print("4. Exit")
+
+store=Grocerystore()
+
+while True:
+    store.display()
+    choice=int(input("Enter the choice:"))
+
+    if choice==1:
+        item=input("Enter the item:")
+        price=int(input("Enter the price"))
+        store.add_item(item, price)
+    elif choice==2:
+        item=input("Enter the item ")
+        store.remove_item(item)
+    elif choice==3:
+        store.total_price()
+    else:
+        print("Thank you")
+        break
+
+#Educational system
+class education:
+    def __init__(self,name,age,course):
+        self.name=name
+        self.age=age
+        self.course=course
+        
+    def display_student(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Course: {self.course}")
+
+
+def display():
+        print("1.Add Student")
+        print("2.Display student")
+        print("3.Exit")
+    
+
+Student=[]
+while True:
+
+    display()
+    choice=int(input("Enter the Creadentials: "))
+    if choice==1:
+        name=input("Enter the student name:")
+        age=input("Enter the student age:")
+        course=input("Enter the student opted course:")
+        student=education(name,age,course)
+        Student.append(student)
+        print("Student details Added succesfully..")
+    if choice==2:
+        if len(Student)==0:
+            print("No student detials found..")
+        else:
+            for student in Student:
+                student.display_student()
+    if choice==3:
+        print("Thank you.")
+        break
+
+        
+
