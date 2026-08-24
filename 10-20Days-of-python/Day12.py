@@ -1,116 +1,194 @@
-# Namespaces:local v/s Global scope
-#local scope
-def greet():
-    walking=2
-    print(walking)
-""" here walking is defined inside the greet function so the walking variable can  be used just inside the function."""
-print(walking)
+class BankAccount:
+    def __init__(self, account_number, name, balance):
+        self.__account_number = account_number
+        self.__name = name
+        self.__balance = balance
 
-def greet():
-    def hello():
-        print(hello())
-"""Even here the function hello is inside the greet function hence it is also local scope """
-print(hello())
+    # Getter methods
+    def get_account_number(self):
+        return self.__account_number
 
-#global scope
-walking=2
+    def get_name(self):
+        return self.__name
 
-def greet():
-    print(walking)
-""" here variable is defined outside the function so we can acces anywhere hence it is called global scope"""
-print(walking)
+    def get_balance(self):
+        return self.__balance
 
-#Program for chechking wheather the number is prime or not
-def is_prime(num):
-    if num==2:
-        return True
-    if num==1:
-        return False
-    for i in range(2,num):
-        if num%i==0:
-            return False
-    return True
-#NO Block Spaces
-age=5
-body_parts=["Heart","Kidney","Brain"]
-if age>0:
-    """In  if,while,for loop we can create the local variable and we can acces even after outside function."""
-    my_variable=body_parts[0]
-print(my_variable)
+    # Deposit
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"₹{amount} deposited successfully.")
+        else:
+            print("Invalid deposit amount.")
 
-def hello():
-    if age>0:
-        my_variable=body_parts[0]
+    # Normal withdrawal
+    def withdraw(self, amount):
+        if amount > 0 and amount <= self.__balance:
+            self.__balance -= amount
+            print(f"₹{amount} withdrawn successfully.")
+        else:
+            print("Insufficient balance.")
 
-print(my_variable)
-
-"""Global variable is useful for defining the constant """
-
-#Modifying the global variable
-count=0
-
-def my_function():
-    global count
-    while count<=0:
-        count+=1
-        print(f"Inside function:{count}")
-
-my_function()
-print(f"Outside function:{count}")
-
-#Number Guessing game
-from random import randint
-EASY_LEVEL_TURNS = 10
-HARD_LEVEL_TURNS = 5
+    def display_account(self):
+        print("\n--- Account Details ---")
+        print(f"Account Number: {self.__account_number}")
+        print(f"Name: {self.__name}")
+        print(f"Balance: ₹{self.__balance}")
 
 
-# Function to check users' guess against actual answer
-def check_answer(user_guess, actual_answer, turns):
-    """Checks answer against guess, returns the number of turns remaining."""
-    if user_guess > actual_answer:
-        print("Too high.")
-        return turns - 1
-    elif user_guess < actual_answer:
-        print("Too low.")
-        return turns - 1
+# Savings Account
+class SavingsAccount(BankAccount):
+
+    def __init__(self, account_number, name, balance, interest_rate):
+        super().__init__(account_number, name, balance)
+        self.interest_rate = interest_rate
+    def calculate_interest(self):
+        interest = self.get_balance() * self.interest_rate / 100
+
+        print(f"Interest earned: ₹{interest}")
+
+
+# Current Account
+class CurrentAccount(BankAccount):
+
+    def __init__(self, account_number, name, balance, overdraft_limit):
+        super().__init__(account_number, name, balance)
+        self.overdraft_limit = overdraft_limit
+
+    # Overriding withdraw()
+    def withdraw(self, amount):
+
+        if amount > 0 and amount <= self.get_balance() + self.overdraft_limit:
+            print(f"₹{amount} withdrawn successfully.")
+        else:
+            print("Overdraft limit exceeded.")
+
+
+# Dictionary to store accounts
+accounts = {}
+
+
+while True:
+
+    print("\n===== BANKING SYSTEM =====")
+
+    print("1. Create Savings Account")
+    print("2. Create Current Account")
+    print("3. Deposit Money")
+    print("4. Withdraw Money")
+    print("5. Check Balance")
+    print("6. Calculate Interest")
+    print("7. Display Account Details")
+    print("8. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+
+    # Create Savings Account
+    if choice == 1:
+        account_number = input("Enter account number: ")
+        if account_number in accounts:
+            print("Account already exists.")
+
+        else:
+            name = input("Enter name: ")
+            balance = float(input("Enter initial balance: "))
+            interest_rate = float(input("Enter interest rate: "))
+
+            account = SavingsAccount(
+                account_number,
+                name,
+                balance,
+                interest_rate
+            )
+
+            accounts[account_number] = account
+
+            print("Savings Account created successfully!")
+
+    # Create Current Account
+    elif choice == 2:
+
+        account_number = input("Enter account number: ")
+
+        if account_number in accounts:
+            print("Account already exists.")
+
+        else:
+            name = input("Enter name: ")
+            balance = float(input("Enter initial balance: "))
+            overdraft_limit = float(input("Enter overdraft limit: "))
+
+            account = CurrentAccount(
+                account_number,
+                name,
+                balance,
+                overdraft_limit
+            )
+
+            accounts[account_number] = account
+
+            print("Current Account created successfully!")
+
+
+    # Deposit
+    elif choice == 3:
+        account_number = input("Enter account number: ")
+        if account_number in accounts:
+            amount = float(input("Enter amount to deposit: "))
+            accounts[account_number].deposit(amount)
+        else:
+            print("Account not found.")
+
+
+    # Withdraw
+    elif choice == 4:
+        account_number = input("Enter account number: ")
+        if account_number in accounts:
+            amount = float(input("Enter amount to withdraw: "))
+            accounts[account_number].withdraw(amount)
+        else:
+            print("Account not found.")
+
+
+    # Check Balance
+    elif choice == 5:
+        account_number = input("Enter account number: ")
+        if account_number in accounts:
+            balance = accounts[account_number].get_balance()
+            print(f"Current Balance: ₹{balance}")
+
+        else:
+            print("Account not found.")
+
+
+    # Calculate Interest
+    elif choice == 6:
+        account_number = input("Enter account number: ")
+        if account_number in accounts:
+            account = accounts[account_number]
+            if isinstance(account, SavingsAccount):
+                account.calculate_interest()
+            else:
+                print("Interest is only available for Savings Accounts.")
+
+        else:
+            print("Account not found.")
+
+
+    # Display Details
+    elif choice == 7:
+        account_number = input("Enter account number: ")
+        if account_number in accounts:
+            accounts[account_number].display_account()
+        else:
+            print("Account not found.")
+
+
+    # Exit
+    elif choice == 8:
+        print("Thank you for using the Banking System!")
+        break
     else:
-        print(f"You got it! The answer was {actual_answer}")
-
-
-# Function to set difficulty
-def set_difficulty():
-    level = input("Choose a difficulty. Type 'easy' or 'hard': ")
-    if level == "easy":
-        return EASY_LEVEL_TURNS
-    else:
-        return HARD_LEVEL_TURNS
-
-
-def game():
-    # Choosing a random number between 1 and 100.
-    print("Welcome to the Number Guessing Game!")
-    print("I'm thinking of a number between 1 and 100.")
-    answer = randint(1, 100)
-    print(f"Pssst, the correct answer is {answer}")
-
-    turns = set_difficulty()
-
-    # Repeat the guessing functionality if they get it wrong.
-    guess = 0
-    while guess != answer:
-        print(f"You have {turns} attempts remaining to guess the number.")
-        # Let the user guess a number
-        guess = int(input("Make a guess: "))
-        # Track the number of turns and reduce by 1 if they get it wrong
-        turns = check_answer(guess, answer, turns)
-        if turns == 0:
-            print("You've run out of guesses, you lose.")
-            return
-        elif guess != answer:
-            print("Guess again.")
-
-
-
-
-game()
-
+        print("Invalid choice.")
