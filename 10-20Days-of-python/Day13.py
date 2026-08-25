@@ -1,24 +1,120 @@
-"""Here i have debuged the range function to include the 20"""
-def my_function():
-    for i in range(1, 21):
-        if i == 20:
-            print("You got it")
+from abc import ABC, abstractmethod
 
-"""I have debugged the erorr of randint function to access the elements from list where randint includes inclusive of end number but range function doesnt support inclusive of end number"""
-from random import randint
-dice_images = ["❶", "❷", "❸", "❹", "❺", "❻"]
-dice_num = randint(0, 5)
-print(dice_images[dice_num])
 
-"""Frist time i tried using try except( exception handling method)here we will be knowing it may throw any error so it's helps us to overcome from error by using try,except."""
-try:
-    age = int(input("How old are you?"))
-except ValueError:
-        print("Invalid thing!.Use numerical for execution")
-        age = int(input("How old are you?"))
+# -------------------------------
+# Base Class
+# -------------------------------
+class Student:
+    def __init__(self, name, age, roll_number):
+        self.name = name
+        self.age = age
+        self.roll_number = roll_number
 
-if age > 18:
-    print(f"You can drive at age {age}.")
+        # Encapsulation
+        self.__marks = {}
 
-#Even we can debug our errors through using print() built i function.
-#We have to resove our code by our own and we have to assume how does the code works what error we are facing for which thngs and all.
+    def add_marks(self, subject, marks):
+        if 0 <= marks <= 100:
+            self.__marks[subject] = marks
+        else:
+            print("Marks should be between 0 and 100.")
+
+    def get_marks(self):
+        return self.__marks.copy()
+
+
+# -------------------------------
+# Abstract Class
+# -------------------------------
+class ReportCard(Student, ABC):
+
+    @abstractmethod
+    def generate_report(self):
+        pass
+
+    def calculate_total(self):
+        marks = self.get_marks()
+        return sum(marks.values())
+
+    def calculate_average(self):
+        marks = self.get_marks()
+
+        if len(marks) == 0:
+            return 0
+
+        return self.calculate_total() / len(marks)
+
+    def calculate_grade(self):
+        average = self.calculate_average()
+
+        if average >= 90:
+            return "A+"
+        elif average >= 80:
+            return "A"
+        elif average >= 70:
+            return "B"
+        elif average >= 60:
+            return "C"
+        elif average >= 50:
+            return "D"
+        else:
+            return "F"
+
+    def check_result(self):
+        marks = self.get_marks()
+
+        # Student must score at least 40 in every subject
+        for mark in marks.values():
+            if mark < 40:
+                return "FAIL"
+
+        return "PASS"
+
+
+# -------------------------------
+# Concrete Class
+# -------------------------------
+class StudentReport(ReportCard):
+
+    # Polymorphism:
+    # Implementing the abstract method
+    def generate_report(self):
+
+        marks = self.get_marks()
+        total = self.calculate_total()
+        average = self.calculate_average()
+        grade = self.calculate_grade()
+        result = self.check_result()
+
+        print("\n========== REPORT CARD ==========")
+
+        print(f"Name       : {self.name}")
+        print(f"Age        : {self.age}")
+        print(f"Roll Number: {self.roll_number}")
+
+        print("\n---------- Subject Marks ----------")
+
+        for subject, mark in marks.items():
+            print(f"{subject:<12}: {mark}")
+
+        print("-----------------------------------")
+        print(f"Total      : {total}")
+        print(f"Average    : {average:.2f}")
+        print(f"Grade      : {grade}")
+        print(f"Result     : {result}")
+
+        print("===================================")
+
+
+# -------------------------------
+# Creating Student Object
+# -------------------------------
+
+student = StudentReport("Roy", 20, 101)
+
+student.add_marks("Math", 85)
+student.add_marks("Python", 92)
+student.add_marks("English", 78)
+student.add_marks("Science", 88)
+
+student.generate_report()
