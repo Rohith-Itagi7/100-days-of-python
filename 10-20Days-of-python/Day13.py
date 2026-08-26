@@ -1,120 +1,160 @@
-from abc import ABC, abstractmethod
+class book:
+    def __init__(self,book_name):
+        self.book_name=book_name
 
+    def display_book(self):
+        print(f"{self.book_name}")
+    
 
-# -------------------------------
-# Base Class
-# -------------------------------
-class Student:
-    def __init__(self, name, age, roll_number):
-        self.name = name
-        self.age = age
-        self.roll_number = roll_number
+class book_details:
+    def __init__(self,id,author):
+        self.id=id
+        self.author=author
 
-        # Encapsulation
-        self.__marks = {}
+    def display(self):
+        print(f"{self.id}")
+        print(f"{self.author}")
 
-    def add_marks(self, subject, marks):
-        if 0 <= marks <= 100:
-            self.__marks[subject] = marks
-        else:
-            print("Marks should be between 0 and 100.")
+class book_price:
+    def __init__(self,price):
+        self.price=price
 
-    def get_marks(self):
-        return self.__marks.copy()
+    def n_price(self):
+        print(f" The book  price is {self.price}")
 
+a=book("Ramayana")
+a.display_book()
+b=book_details(1,"Chandan")
+b.display()
+c=book_price(100)
+c.n_price()
 
-# -------------------------------
-# Abstract Class
-# -------------------------------
-class ReportCard(Student, ABC):
+# class Payment:
+#     def pay(self, payment_type):
+#         if payment_type == "UPI":
+#             print("Payment using UPI")
+#         elif payment_type == "Card":
+#             print("Payment using Card")
+#         elif payment_type == "Cash":
+#             print("Payment using Cash")
 
-    @abstractmethod
-    def generate_report(self):
+class payment:
+    def payment_type(self):
         pass
 
-    def calculate_total(self):
-        marks = self.get_marks()
-        return sum(marks.values())
+class UPI(payment):
+    def payment_type(self):
+        print("Payment using UPI")
+class Card(payment):
+    def payment_type(self):
+        print("Payment using Card")
+class Cash(payment):
+    def payment_type(self):
+        print("Payment using Cash")
+class Paypal(payment):
+    def payment_type(self):
+        print("Payment using paypal")
 
-    def calculate_average(self):
-        marks = self.get_marks()
+a=Paypal()
+a.payment_type()
 
-        if len(marks) == 0:
-            return 0
+class Notification:
+    def send(self, notification_type):
+        if notification_type == "email":
+            print("Sending Email")
+        elif notification_type == "sms":
+            print("Sending SMS")
 
-        return self.calculate_total() / len(marks)
+class Notification:
+    def send(self):
+        pass
 
-    def calculate_grade(self):
-        average = self.calculate_average()
+class whatsapp(Notification):
+    def send(self):
+        print("Sending Whatsap sms")
+class telegram(Notification):
+    def send(self):
+        print("Sending Telegram sms")
 
-        if average >= 90:
-            return "A+"
-        elif average >= 80:
-            return "A"
-        elif average >= 70:
-            return "B"
-        elif average >= 60:
-            return "C"
-        elif average >= 50:
-            return "D"
-        else:
-            return "F"
+class Vehicle:
+    def start(self):
+        print("Vehical starts.")
 
-    def check_result(self):
-        marks = self.get_marks()
+class car(Vehicle):
+    def start(self):
+        print("Car started")
+class boat(Vehicle):
+    def start(self):
+        print("Boat started")
 
-        # Student must score at least 40 in every subject
-        for mark in marks.values():
-            if mark < 40:
-                return "FAIL"
+def start_vehicle(vehicle):
+    vehicle.start()
 
-        return "PASS"
+start_vehicle(car())
+start_vehicle(boat())
 
-
-# -------------------------------
-# Concrete Class
-# -------------------------------
-class StudentReport(ReportCard):
-
-    # Polymorphism:
-    # Implementing the abstract method
-    def generate_report(self):
-
-        marks = self.get_marks()
-        total = self.calculate_total()
-        average = self.calculate_average()
-        grade = self.calculate_grade()
-        result = self.check_result()
-
-        print("\n========== REPORT CARD ==========")
-
-        print(f"Name       : {self.name}")
-        print(f"Age        : {self.age}")
-        print(f"Roll Number: {self.roll_number}")
-
-        print("\n---------- Subject Marks ----------")
-
-        for subject, mark in marks.items():
-            print(f"{subject:<12}: {mark}")
-
-        print("-----------------------------------")
-        print(f"Total      : {total}")
-        print(f"Average    : {average:.2f}")
-        print(f"Grade      : {grade}")
-        print(f"Result     : {result}")
-
-        print("===================================")
+# DIP Practice: Make a HomeAppliance system where high-level class Remote works with abstract Appliance, and you can pass TV, AC, etc.
 
 
-# -------------------------------
-# Creating Student Object
-# -------------------------------
+class appliance:
+    def input_device(self):
+        pass
+class TV(appliance):
+    def input_device(self):
+       return "TV is working"
+class AC(appliance):
+    def input_device(self):
+        return "AC is working"
 
-student = StudentReport("Roy", 20, 101)
+class remote:
+    def __init__(self, device: appliance):
+        self.device = device
 
-student.add_marks("Math", 85)
-student.add_marks("Python", 92)
-student.add_marks("English", 78)
-student.add_marks("Science", 88)
+    def get_balance(self):
+        return self.device.input_device()
 
-student.generate_report()
+
+tv=TV()
+ac=AC()
+
+r1=remote(tv)
+r2=remote(ac)
+print(r1.get_balance())
+print(r2.get_balance())
+
+try:
+    user=int(input("Enter the age:"))
+except ValueError:
+    print("Invalid input try again.")
+else:
+    print(f"{100-user} years to reach 100years.")
+finally:
+    print("Everything worked")
+
+try:
+    a=int(input("Enter the frist number:"))
+    b=int(input("Enter the second number:"))
+except ZeroDivisionError as e:
+    print(f"e: The error is {e} ")
+except ValueError as e:
+    print(f"e: The error is {e} ")
+else:
+    print(a/b)
+finally:
+    print("Closing file... (even if error occurred)")
+
+try:
+    filename = input("Enter the file name: ")
+    file = open(filename, "r")
+
+except FileNotFoundError:
+    print("File not found")
+
+else:
+    print("File found")
+    file.close()
+
+finally:
+    print("Program End")
+
+
