@@ -1,40 +1,122 @@
-from game_data import data
-import random
-from art import logo,vs
+def decorator(func):
+    def wrapper():
+        print("Namskara")
+        func()
+        print("Ok")
+    return wrapper
+@decorator
+def into():
+    print("hahaha")
 
-def interface(account):
-     answer_name=account["name"]
-     answer_dep=account["description"]
-     answer_place=account["country"]
-     return f"{answer_name} a {answer_dep} from {answer_place} "
+into()
 
-def check_answer(guess,a_follower,b_follower):
-    if a_follower>b_follower:
-        return guess=="a"
-    else:
-        return guess=="b"
-print(logo)
-score=0
-should_continue=True
-user_b=random.choice(data)
-while should_continue:
-    user_a=user_b
-    user_b=random.choice(data)
-    if user_a==user_b:
-       user_b=random.choice(data)
-    #Here I have reused th function by calling diffrent argument
-    print(f"Compare A:{interface(user_a)}")
-    print(vs)
-    print(f"Against B:{interface(user_b)}")
-    user_guess=input("who has more followers? Type 'A' or 'B':").lower()
-    a_follower_count=user_a["follower_count"]
-    b_follower_count=user_b["follower_count"]
-    is_correct=check_answer(user_guess,a_follower_count,b_follower_count)
-    #Here I learnt if is_correct is true it execute if or it skips and prints else
-    if is_correct:
-       score+=1
-       print(f"You're right! Current score {score}")
-    else:
-        print(f"Sorry, that's wrong. Final score: {score}.")
+#decorators with arguments and loging
+def show_result(func):
+    def wrapper(a,b):
+        print(f"This function '{func.__name__ }'is called")
+        func(a,b)
+    return wrapper
+    
+@show_result
+def add(a,b):
+    print(a+b)
 
-        should_continue=False
+def sub(a,b):
+    print(a-b)
+
+add(5,10)
+sub(10,5)
+
+#logging
+def log_function_call(func):
+    def wrapper():
+        print(f"This function '{func.__name__ }'is called")
+        func()
+    return wrapper()
+
+@log_function_call
+def add():
+    print("Add")
+
+import time
+
+def time_taken(func):
+    def wrapper():
+        print("Time started")
+        start=time.time()
+        func()
+        end=time.time()
+        execution_time = end - start
+        print(f"Task completed time taken : {execution_time}")
+    return wrapper
+
+@time_taken
+def long_task():
+    time.sleep(2)
+    
+    
+long_task()
+
+def adds(func):
+    def wrapper(a,b):
+        print("===")
+        func(a,b)
+        print("===")
+    return wrapper
+def arrow(func):
+    def wrapper(a,b):
+        print(">>>")
+        func(a,b)
+    return wrapper
+
+@arrow
+@adds
+
+def add(a,b):
+    print(a+b)
+
+add(10,5)
+
+def allow_only(func):
+    def wrapper(name):
+        if name=="Admin":
+            func(name)
+        else:
+            print("Acces diened ")
+    return wrapper
+
+@allow_only
+def view_data(name):
+    print(f"Name:{name}")
+
+view_data("Admin")
+
+temps_c = [25, 30, 35, 40]
+def calc(c):
+    return (c * 9/5) + 32
+final=map(calc,temps_c)
+print(list(final))
+
+cities = ["Bengaluru", "Mysuru", "Mandya", "Hubballi", "Ballari", "Hassan"]
+
+def start_with(city):
+    return city.startswith("M")
+final=filter(start_with,cities)
+print(list(final))
+
+from functools import reduce
+scores = [45, 67, 89, 34, 76, 90]
+
+total= reduce(lambda a,b: a if a>b else b,scores) 
+print(total)
+
+marks = [35, 50, 66, 20, 88, 75]
+
+total=map(lambda x: x+10,marks)
+print(list(total))
+
+total=filter(lambda x:x>50,marks)
+print(list(total))
+
+total=reduce(lambda x,y:x+y,marks)
+print(total)
