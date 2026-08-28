@@ -1,100 +1,51 @@
-MENU = {
-    "espresso": {
-        "ingredients": {
-            "water": 50,
-            "coffee": 18,
-        },
-        "cost": 1.5,
-    },
-    "latte": {
-        "ingredients": {
-            "water": 200,
-            "milk": 150,
-            "coffee": 24,
-        },
-        "cost": 2.5,
-    },
-    "cappuccino": {
-        "ingredients": {
-            "water": 250,
-            "milk": 100,
-            "coffee": 24,
-        },
-        "cost": 3.0,
-    }
-}
+movies = ["Kantara", "KGF", "777 Charlie", "Garuda Gamana Vrishabha Vahana", "Kirik Party"]
 
-profit = 0
-resources = {
-    "water": 300,
-    "milk": 200,
-    "coffee": 100,
-}
+movie_iterator = iter(movies)
+
+print(next(movie_iterator))
+print(next(movie_iterator))
+print(next(movie_iterator))
+print(next(movie_iterator))
+print(next(movie_iterator))
 
 
-def is_resource_sufficient(order_ingredients):
-    """Returns True when order can be made, False if ingredients are insufficient."""
-    for item in order_ingredients:
-        if order_ingredients[item] > resources[item]:
-            print(f"Sorry there is not enough {item}.")
-            return False
-    return True
+class EvenNumbers:
+    def __init__(self, n):
+        self.n = n
+        self.current = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.current <= self.n:
+            value = self.current
+            self.current += 2
+            return value
+        else:
+            raise StopIteration
 
 
-def process_coins():
-    """Returns the total calculated from coins inserted."""
-    print("Please insert coins.")
-    #Got to know how can i sum using same variable
-    total = int(input("how many quarters?: ")) * 0.25
-    total += int(input("how many dimes?: ")) * 0.1
-    total += int(input("how many nickles?: ")) * 0.05
-    total += int(input("how many pennies?: ")) * 0.01
-    return total
+numbers = EvenNumbers(10)
+
+for num in numbers:
+    print(num)
 
 
-def is_transaction_successful(money_received, drink_cost):
-    """Return True when the payment is accepted, or False if money is insufficient."""
-    if money_received >= drink_cost:
-        change = round(money_received - drink_cost, 2)
-        print(f"Here is ${change} in change.")
-        #We cant directly modify the global scope with in the function
-        global profit
-        profit += drink_cost
-        return True
-    else:
-        print("Sorry that's not enough money. Money refunded.")
-        return False
+def countdown(n):
+    while n >= 0:
+        yield n
+        n -= 1
 
 
-def make_coffee(drink_name, order_ingredients):
-    """Deduct the required ingredients from the resources."""
-    for item in order_ingredients:
-        resources[item] -= order_ingredients[item]
-    print(f"Here is your {drink_name} ☕️. Enjoy!")
+for number in countdown(5):
+    print(number)
 
+import sys
 
-is_on = True
+list_numbers = [x for x in range(1, 1000001)]
 
-while is_on:
-    choice = input("What would you like? (espresso/latte/cappuccino): ")
-    if choice == "off":
-        is_on = False
-    elif choice == "report":
-        print(f"Water: {resources['water']}ml")
-        print(f"Milk: {resources['milk']}ml")
-        print(f"Coffee: {resources['coffee']}g")
-        print(f"Money: ${profit}")
-    else:
-        drink = MENU[choice]
-        if is_resource_sufficient(drink["ingredients"]):
-            payment = process_coins()
-            if is_transaction_successful(payment, drink["cost"]):
-                make_coffee(choice, drink["ingredients"])
+generator_numbers = (x for x in range(1, 1000001))
 
-
-
-
-
-
-
-
+print("List size:", sys.getsizeof(list_numbers))
+print("Generator size:", sys.getsizeof(generator_numbers))
